@@ -1,0 +1,66 @@
+<!-DOCTYPE HTML-->
+<html>
+<head>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" type="text/css"/>
+<link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.min.css" type="text/css"  />
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" type="text/css" />
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js" ></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js" ></script>
+
+<script type="text/javascript">
+var destinationType;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+     $("#btnCamara").tap(function pulsacion(){
+    
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.FILE_URI });
+
+    function onSuccess(imageURI) {
+    var image = document.getElementById("myImage");//Seleccionar control con javascript
+    image.src = imageURI;
+    }
+
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }            
+   });
+}
+</script>
+<style type="text/css">
+#encabezado{
+text-align:center;
+font-size: 14px;
+color:red;
+font-weight:bold;
+}
+#pie{
+text-align:center;
+font-size:8px;
+color:green;
+font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div data-role="page" id="principal">
+	<div data-role="header">
+		<h1>Mi aplicación</h1>
+	</div>
+	<div data-role="content">
+		<input type="button" value="Acceder a camara" id="btnCamara" />
+                <img src="" id="myImage" width="20%" />
+  	</div>
+	<div data-role="footer">
+     	<div  data-role="controlgroup" data-type="horizontal">
+			<a href="#segunda" class="ui-btn ui-icon-info-white ui-icon-left">Abrir</a>
+			<a href="#" class="ui-btn">Fecebook</a>
+			<a href="#" class="ui-btn">Twitter</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
